@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Young+Serif&display=swap');
+
+.App {
+  text-align: center;
+}
+
+html, body, #root, .App {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.bookings-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./img/background-bookins.jpg');
+  background-size: cover;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+.new-booking-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./img/background-new-bookings.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+}
+
+.membership-page {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./img/membership-page.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+}
+
+
+.login-page {
+  position: relative; /* This is important for the positioning of the pseudo-element */
+  background-image: url('./img/login-background.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  width: 60%;
+}
+
+.login-page-half {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.516); /* This is a light beige color with some opacity */
+  z-index: 1; /* This ensures the overlay sits above the background image */
+}
+
+.about-page {
+  background-image: url('./img/about-page.jpg');
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  background-position: left -180px; /* Align to the left and top */
+}
+
+.info-page {
+  position: relative; /* This is important for the positioning of the pseudo-element */
+  background-image: url('./img/info-page.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* This will create an overlay of a delicate white color over your background image */
+.info-page::before {
+  content: ""; /* Necessary for the pseudo-element to display */
+  position: absolute; /* Will cover the entire .info-page */
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Delicate white with 70% opacity */
+  z-index: 1; /* Ensure the overlay is above the background image but below the content */
+}
+
+/* You might need to adjust the z-index of the content so it remains above the white overlay */
+.info-page > * {
+  z-index: 2;
+  position: relative;
+}
