@@ -13,7 +13,7 @@ import ModifyFormBooking from "../../components/ModifyFormBooking/ModifyFormBook
 
 export default function Bookings() {
     const navigate = useNavigate();
-    const { user, setUser } = useUser();
+    const { user } = useUser();
 
     const [currentPage, setCurrentPage] = useState(1); // to keep track of the current page
     const [modifyOpen, setModifyOpen] = useState(false);
@@ -71,10 +71,6 @@ export default function Bookings() {
                 onClose={() => {
                     setModalOpen(false);
                     setModalMessage(null);
-                    setUser({ //it update without refreshing the page the data, in order to shows the last booking added
-                        ...user,
-                        bookings: [...user.bookings]
-                      });
                     // if i don't use these statement it will navigate straigh away, without showing the modal
                     if (redirectWithData) {
                         navigate("/newBooking", { state: { id: user.email } });
