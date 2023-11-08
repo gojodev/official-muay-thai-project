@@ -54,6 +54,17 @@ export default function MembershipPage() {
             email: user.email
         }
 
+        // not sure in putting this in the right place 💀
+        // for automatically adding in spaces to the card number --------
+        cardNumber.addEventListener("input", () => card_number.value = formatNumber(cardNumber.value.replaceAll(" ", "")));
+        
+        const formatNumber = (number) => number.split("").reduce((seed, next, index) => {
+            if (index !== 0 && index % 4 == 0) seed += " ";
+            return seed + next;
+        }, "");
+
+        // ---------
+
         try {
             const response = await fetch('http://localhost:3001/membershipPage', {
                 method: 'POST',
