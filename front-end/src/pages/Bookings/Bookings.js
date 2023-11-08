@@ -13,7 +13,7 @@ import ModifyFormBooking from "../../components/ModifyFormBooking/ModifyFormBook
 
 export default function Bookings() {
     const navigate = useNavigate();
-    const { user } = useUser();
+    const { user, setUser } = useUser();
 
     const [currentPage, setCurrentPage] = useState(1); // to keep track of the current page
     const [modifyOpen, setModifyOpen] = useState(false);
@@ -51,9 +51,9 @@ export default function Bookings() {
                     bookingSelected: currentPage - 1
                 }),
             });
-    
+
             const data = await response.json();
-            
+
             if (response.ok) {
                 setModalMessage(data.message);
                 setModalOpen(true);
@@ -71,6 +71,10 @@ export default function Bookings() {
                 onClose={() => {
                     setModalOpen(false);
                     setModalMessage(null);
+                    setUser({ //it update without refreshing the page the data, in order to shows the last booking added
+                        ...user,
+                        bookings: [...user.bookings]
+                    });
                     // if i don't use these statement it will navigate straigh away, without showing the modal
                     if (redirectWithData) {
                         navigate("/newBooking", { state: { id: user.email } });
@@ -113,21 +117,21 @@ export default function Bookings() {
                                     }
                                 </Grid>
                                 {modifyOpen ?
-                                    <ModifyFormBooking setModifyOpen={ setModifyOpen } currentBooking={currentPage} />
+                                    <ModifyFormBooking setModifyOpen={setModifyOpen} currentBooking={currentPage} />
                                     :
                                     <Grid container justifyContent="center" spacing={3} mt={0.7}>
-                                    <Grid item>   
-                                        <Button variant="contained" onClick={ deleteBooking }>
-                                            Delete a booking
-                                        </Button>
-                                    </Grid>
                                     <Grid item>
-                                         <Button variant="contained" onClick={() => { setModifyOpen(!modifyOpen) }}>  {/* send as argument, if the modify is open and the currentBooking */}
-                                            Modify a booking
-                                        </Button>
+                                            <Button variant="contained" onClick={deleteBooking}>
+                                                Delete a booking
+                                            </Button>
+                                        </Grid>
+                                        <Grid item>
+                                            <Button variant="contained" onClick={() => { setModifyOpen(!modifyOpen) }}>  {/* send as argument, if the modify is open and the currentBooking */}
+                                                Modify a booking
+                                            </Button>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                                }   
+                                }
                             </Paper>
                         </Grid>
                     </Grid>
