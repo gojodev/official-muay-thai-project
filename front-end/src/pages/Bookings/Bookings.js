@@ -50,9 +50,9 @@ export default function Bookings() {
                     bookingSelected: currentPage
                 }),
             });
-    
+
             const data = await response.json();
-            
+
             if (response.ok) {
                 setModalMessage(data.message);
                 setModalOpen(true);
@@ -119,21 +119,21 @@ export default function Bookings() {
                                     }
                                 </Grid>
                                 {modifyOpen ?
-                                    <ModifyFormBooking setModifyOpen={ setModifyOpen } currentBooking={currentPage} />
+                                    <ModifyFormBooking setModifyOpen={setModifyOpen} currentBooking={currentPage} />
                                     :
                                     <Grid container justifyContent="center" spacing={3} mt={0.7}>
-                                    <Grid item>   
-                                        <Button variant="contained" onClick={ deleteBooking }>
-                                            Delete a booking
-                                        </Button>
-                                    </Grid>
                                     <Grid item>
-                                         <Button variant="contained" onClick={() => { setModifyOpen(!modifyOpen) }}>  {/* send as argument, if the modify is open and the currentBooking */}
-                                            Modify a booking
-                                        </Button>
+                                            <Button variant="contained" onClick={deleteBooking}>
+                                                Delete a booking
+                                            </Button>
+                                        </Grid>
+                                        <Grid item>
+                                            <Button variant="contained" onClick={() => { setModifyOpen(!modifyOpen) }}>  {/* send as argument, if the modify is open and the currentBooking */}
+                                                Modify a booking
+                                            </Button>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                                }   
+                                }
                             </Paper>
                         </Grid>
                     </Grid>
